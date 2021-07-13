@@ -1,0 +1,9 @@
+com\ftd\example\SpringBootMongoDBApplication\config\ValidationConfig.class
+com\ftd\example\SpringBootMongoDBApplication\controller\TodoController.class
+com\ftd\example\SpringBootMongoDBApplication\service\TodoService.class
+com\ftd\example\SpringBootMongoDBApplication\exception\TodoCollectionException.class
+com\ftd\example\SpringBootMongoDBApplication\exception\TodoNotNullException.class
+com\ftd\example\SpringBootMongoDBApplication\model\TodoDTO.class
+com\ftd\example\SpringBootMongoDBApplication\SpringBootMongoDbApplication.class
+com\ftd\example\SpringBootMongoDBApplication\service\TodoServiceImpl.class
+com\ftd\example\SpringBootMongoDBApplication\repository\TodoRepository.class
