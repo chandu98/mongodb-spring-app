@@ -1,20 +1,17 @@
 package com.ftd.example.SpringBootMongoDBApplication.controller;
 
+import com.ftd.example.SpringBootMongoDBApplication.SpringBootMongoDbApplication;
 import com.ftd.example.SpringBootMongoDBApplication.exception.TodoCollectionException;
-import com.ftd.example.SpringBootMongoDBApplication.exception.TodoNotNullException;
 import com.ftd.example.SpringBootMongoDBApplication.model.TodoDTO;
 import com.ftd.example.SpringBootMongoDBApplication.repository.TodoRepository;
 import com.ftd.example.SpringBootMongoDBApplication.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class TodoController {
