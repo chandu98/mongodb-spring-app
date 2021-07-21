@@ -3,6 +3,7 @@ package com.ftd.example.SpringBootMongoDBApplication.controller;
 import com.ftd.example.SpringBootMongoDBApplication.SpringBootMongoDbApplication;
 import com.ftd.example.SpringBootMongoDBApplication.exception.TodoCollectionException;
 import com.ftd.example.SpringBootMongoDBApplication.model.TodoDTO;
+import com.ftd.example.SpringBootMongoDBApplication.pubsub.PubsubConfig;
 import com.ftd.example.SpringBootMongoDBApplication.repository.TodoRepository;
 import com.ftd.example.SpringBootMongoDBApplication.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,16 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
+    @Autowired
+    private PubsubConfig pubsubConfig;
+
+    @Autowired
+    private PubsubConfig.PubsubOutboundGateway pubsubOutboundGateway;
+
     @GetMapping("/todos")
     public ResponseEntity<?> getAllTodos(){
         List <TodoDTO> todos = todoService.getAllTodos();
-
+        pubsubOutboundGateway.sendToPubsub("Todo list returned");
         return new ResponseEntity<>(todos, todos.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 
     }
@@ -35,6 +42,7 @@ public class TodoController {
 
             try {
                 todoService.createTodo(todo);
+                pubsubOutboundGateway.sendToPubsub(todo+" data received----");
                 return new ResponseEntity<TodoDTO>(todo, HttpStatus.OK);
             } catch (ConstraintViolationException e) {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
